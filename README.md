@@ -5,8 +5,9 @@ Java Web Framework.
 
 ## 特性
 - 1、MVC：Page、JSON等Web请求；
-- 2、JSONP兼容：JSON接口同时支持JSONP方式调用；
-- 3、Console：支持查看可提供服务的页面和API接口列表；
+- 2、API功能：每个API接口只需要开发相应的Handler即可；
+- 3、JSONP兼容：JSON接口同时支持JSONP方式调用；
+- 4、Console：支持查看可提供服务的页面和API接口列表；
 
 ## 快速入门
 
