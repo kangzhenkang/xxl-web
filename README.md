@@ -1,7 +1,7 @@
 ## 《xxl-web》
 
 ## 简介
-Java Web Framework
+Java Web Framework.
 
 ## 特性
 - 1、MVC：Page、JSON等Web请求；
