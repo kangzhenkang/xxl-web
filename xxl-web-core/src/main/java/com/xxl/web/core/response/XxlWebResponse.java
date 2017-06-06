@@ -11,6 +11,6 @@ public abstract class XxlWebResponse {
 
 	public abstract XxlWebContentType contentType();
 
-	public abstract String content();
+	public abstract String content() throws Exception;
 
 }

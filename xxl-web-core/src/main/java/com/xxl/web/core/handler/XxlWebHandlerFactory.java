@@ -142,7 +142,7 @@ public class XxlWebHandlerFactory implements ApplicationContextAware {
      * @param apiResponse
      * @return
      */
-    private static XxlWebResponse buildResponse(HttpServletRequest request, HttpServletResponse response, XxlWebResponse apiResponse) {
+    public static XxlWebResponse buildResponse(HttpServletRequest request, HttpServletResponse response, XxlWebResponse apiResponse) {
         // support jsonp
         if (apiResponse instanceof JsonResponse) {
             String jsonp = request.getParameter(XxlConstant.JSONP);

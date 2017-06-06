@@ -2,6 +2,7 @@ package com.xxl.web.core.dispatch;
 
 import com.xxl.web.core.handler.XxlWebHandlerFactory;
 import com.xxl.web.core.response.XxlWebResponse;
+import com.xxl.web.core.response.impl.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,10 +40,26 @@ public class XxlWebDispatchServlet extends HttpServlet {
 		// dispatch handler
 		XxlWebResponse apiResponse = XxlWebHandlerFactory.dispatchHandler(request, response);
 
+		String content = null;
+		try {
+			content = apiResponse.content();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			apiResponse = XxlWebHandlerFactory.buildResponse(request, response, new JsonResponse(JsonResponse.CODE_FAIL, e.getMessage()));
+			try {
+				content = apiResponse.content();
+			} catch (Exception e1) {
+				logger.error(e.getMessage(), e1);
+				content = e.getMessage();
+				// TODO
+			}
+
+		}
+
 		// response
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.setContentType(apiResponse.contentType().type);
-		response.getWriter().println(apiResponse.content());
+		response.getWriter().println(content);
 	}
 	
 }
