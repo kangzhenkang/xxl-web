@@ -41,9 +41,10 @@ public class XxlWebHandlerFactory implements ApplicationContextAware {
         String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         if (beanDefinitionNames!=null && beanDefinitionNames.length>0) {
             for (String beanDefinitionName : beanDefinitionNames) {
-                Object beanDefinition = applicationContext.getBean(beanDefinitionName);
 
-                if (beanDefinition instanceof XxlWebHandler) {
+                boolean isApiHandler = applicationContext.isTypeMatch(beanDefinitionName, XxlWebHandler.class);
+                if (isApiHandler) { // if (beanDefinition instanceof XxlWebHandler) {
+                    Object beanDefinition = applicationContext.getBean(beanDefinitionName);
                     // valid annotation
                     XxlWebHandlerMapping annotation = beanDefinition.getClass().getAnnotation(XxlWebHandlerMapping.class);
                     if (annotation!=null && annotation.value()!=null && annotation.value().trim().length()>0 ) {
